@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Campground</title>
+</head>
+<body>
+    <form action="/campgrounds/<%=campground.id%>/?_method=PUT" method="POST">
+        <label for="location">Campground Location</label>
+        <select name="campground[location]">
+            <% for (location of locations) { %> 
+                <option><%= location.city %>, <%= location.state %></option>
+            <% } %> 
+        </select>
+        <label for="title">Campground Name:</label>
+        <input id="title" name="campground[title]" type="text" value="<%= campground.title %>">
+        <button>Submit</button>
+    </form>
+
+    <a href="/campgrounds/<%=campground.id%>"><button>Cancel</button></a>
+    <a href="/campgrounds"><button>All Campgrounds</button></a>
+</body>
+</html>
