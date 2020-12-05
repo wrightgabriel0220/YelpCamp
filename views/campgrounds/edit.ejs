@@ -1,7 +1,7 @@
 <% layout('/layouts/boilerplate') %>
 <div class="row">
   <h1 class="text-center">Edit Campground</h1>
-  <form action="/campgrounds/<%=campground.id%>/?_method=PUT" method="POST">
+  <form action="/campgrounds/<%=campground.id%>/?_method=PUT" method="POST" novalidate class="needs-validation">
     <div class="mb-3">
       <label class="form-label" for="location">Campground Location</label>
       <select class="form-control mt-2 mb-2" name="campground[location]">
@@ -13,24 +13,14 @@
 
     <div class="mb-3">
       <label class="form-label" for="title">Campground Name:</label>
-      <input
-        value="<%= campground.title %>"
-        class="form-control mt-2 mb-2"
-        id="title"
-        name="campground[title]"
-        type="text"
-      />
+      <input value="<%= campground.title %>" class="form-control mt-2 mb-2" id="title" name="campground[title]"
+        type="text" required />
     </div>
 
     <div class="mb-3">
       <label class="form-label" for="image">Image URL:</label>
-      <input
-        value="<%= campground.image %> "
-        class="form-control mt-2 mb-2"
-        id="image"
-        name="campground[image]"
-        type="text"
-      />
+      <input value="<%= campground.image %> " class="form-control mt-2 mb-2" id="image" name="campground[image]"
+        type="text" required />
     </div>
 
     <div class="mb-3">
@@ -39,14 +29,8 @@
         <div class="input-group-prepend">
           <span class="input-group-text">$</span>
         </div>
-        <input
-          value="<%= campground.price %> "
-          id="price"
-          name="campground[price]"
-          type="text"
-          class="form-control"
-          aria-label="Amount (to the nearest dollar)"
-        />
+        <input value="<%= campground.price %> " id="price" name="campground[price]" type="text" class="form-control"
+          aria-label="Amount (to the nearest dollar)" required />
         <div class="input-group-append">
           <span class="input-group-text">.00</span>
         </div>
@@ -54,15 +38,9 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label" for="description"
-        >Campground Description:</label
-      >
-      <textarea
-        class="form-control mt-2 mb-2"
-        id="description"
-        name="campground[description]"
-        type="text"
-      ><%= campground.description %> </textarea>
+      <label class="form-label" for="description">Campground Description:</label>
+      <textarea class="form-control mt-2 mb-2" id="description" name="campground[description]" type="text" required>
+<%= campground.description %> </textarea>
     </div>
 
     <div class="mt-5 mb-3">
@@ -72,3 +50,28 @@
 </div>
 
 <a class="btn btn-danger" href="/campgrounds/<%=campground.id%>">Cancel/Return to Campgrounds</a>
+
+<script>
+  (function () {
+    "use strict";
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll(".needs-validation");
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(function (form) {
+      form.addEventListener(
+        "submit",
+        function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        },
+        false
+      );
+    });
+  })();
+</script>
