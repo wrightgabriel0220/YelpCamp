@@ -1,0 +1,24 @@
+<% layout('/layouts/boilerplate') %>
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading"><%= err.statusCode %> Error!</h4>
+            <p><%= err.message %> </p>
+            <hr>
+            <div id="accordion">
+                <h5 class="mb-0">
+                    <button class="btn btn-light" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        Stack Trace
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <p><%= err.stack  %> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
