@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const Campground = require("../models/campground");
 const { places, descriptors } = require("./seedhelpers");
 const cities = require("./cities");
-const axios = require("axios");
-const express = require("express");
 
 mongoose.connect("mongodb://localhost:27017/yelp-camp", {
   useNewUrlParser: true,
